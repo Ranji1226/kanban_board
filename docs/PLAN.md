@@ -6,7 +6,7 @@ Enrich this document to plan out each of these parts in detail, with substeps li
 
 Part 2: Scaffolding
 
-Set up the Docker infrastructure, the backend in backend/ with FastAPI, and write the start and stop scripts in the scripts/ directory. This should serve example static HTML to confirm that a 'hello world' example works running locally and also make an API call.
+Set up the local development environment, the backend in backend/ with FastAPI, and write start and stop scripts in the scripts/ directory. Do not use Docker or require a container. Use uv to manage the Python backend locally. Serve example static HTML to confirm that a 'hello world' example works locally and that a backend API call succeeds.
 
 Part 3: Add in Frontend
 
@@ -28,10 +28,10 @@ Part 7: Frontend + Backend
 
 Now have the frontend actually use the backend API, so that the app is a proper persistent Kanban board. Test very throughly.
 
-Part 8: AI connectivity
+Part 8: Local AI connectivity
 
-Now allow the backend to make an AI call via OpenRouter. Test connectivity with a simple "2+2" test and ensure the AI call is working.
+Integrate the backend with Ollama running on the local machine, using a free model installed by the user. Do not call hosted AI providers or require API keys. The backend may use Ollama's localhost interface; all inference must remain local. Test connectivity with a simple "2+2" prompt and verify the response.
 
-Part 9: Now extend the backend call so that it always calls the AI with the JSON of the Kanban board, plus the user's question (and conversation history). The AI should respond with Structured Outputs that includes the response to the user and optionaly an update to the Kanban. Test thoroughly.
+Part 9: Extend the local model interaction so that it receives the JSON of the Kanban board, the user's question, and conversation history. The model should respond with structured output that includes the response to the user and optionally an update to the Kanban. Test thoroughly using the locally running Ollama model.
 
 Part 10: Now add a beautiful sidebar widget to the UI supporting full AI chat, and allowing the LLM (as it determines) to update the Kanban based on its Structured Outputs. If the AI updates the Kanban, then the UI should refresh automatically.
