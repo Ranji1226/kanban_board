@@ -1,28 +1,21 @@
+from pathlib import Path
+
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(title="Kanban Studio")
 
-
-@app.get("/", response_class=HTMLResponse)
-def home() -> str:
-    return """<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kanban Studio</title>
-  </head>
-  <body>
-    <main>
-      <h1>Kanban Studio backend is running</h1>
-      <p>The local FastAPI server is ready.</p>
-      <p>Check <a href="/api/health">the health endpoint</a>.</p>
-    </main>
-  </body>
-</html>"""
+frontend_build = Path(__file__).resolve().parents[2] / "frontend" / "out"
+if not frontend_build.is_dir():
+    raise RuntimeError(
+        f"Frontend export not found at {frontend_build}. "
+        "Build it first with `npm run build` from the frontend directory."
+    )
 
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+app.mount("/", StaticFiles(directory=frontend_build, html=True), name="frontend")

@@ -8,7 +8,7 @@
 - Run AI inference only with a free model installed locally in Ollama. A backend connection to Ollama over localhost is allowed; hosted AI providers, cloud AI APIs, and API keys are out of scope.
 - Keep the MVP sign-in credentials fixed to `user` / `password`; design stored data to support multiple users later.
 - Preserve the existing frontend demo and its color scheme while wiring in backend capabilities.
-- Run the backend directly with `uv`; stop it from the terminal running the process.
+- Run the backend directly with `python -m uv`; stop it from the terminal running the process.
 
 ## Part 1: Plan and approval
 
@@ -25,7 +25,7 @@
 - [x] Inspect the available development environment and record prerequisites for Python/`uv`, Node.js/npm, and Ollama.
 - [x] Create the FastAPI backend in `backend/` and manage its Python dependencies with `uv`.
 - [x] Add a minimal backend route for a health/status check.
-- [x] Document direct local server startup with `uv` and stopping with Ctrl+C; do not use containers or launcher scripts.
+- [x] Document direct local server startup with `python -m uv` and stopping with Ctrl+C; do not use containers or launcher scripts.
 - [x] Serve a minimal local example page and expose the backend route so the initial end-to-end local setup can be verified.
 - [x] Document the minimal commands needed to set up, start, and stop the application.
 
@@ -35,10 +35,10 @@
 
 ## Part 3: Serve the existing frontend
 
-- [ ] Configure Next.js to produce a static build compatible with the FastAPI static-file serving approach.
-- [ ] Serve the exported frontend and its assets from FastAPI at `/`, with the backend routes remaining reachable.
-- [ ] Preserve the existing Kanban demo, layout, and styling.
-- [ ] Add or update frontend unit and browser tests for the served application.
+- [x] Configure Next.js to produce a static build compatible with the FastAPI static-file serving approach.
+- [x] Serve the exported frontend and its assets from FastAPI at `/`, with the backend routes remaining reachable.
+- [x] Preserve the existing Kanban demo, layout, and styling.
+- [x] Add or update frontend unit and browser tests for the served application.
 
 **Tests and validation:** Run the frontend lint, unit tests, production build, and Playwright tests; start the local backend and verify `/` and static assets load from it.
 
@@ -46,14 +46,14 @@
 
 ## Part 4: MVP sign-in
 
-- [ ] Add a sign-in screen using the fixed MVP credentials `user` / `password`.
-- [ ] Keep the board hidden until sign-in succeeds.
-- [ ] Add a sign-out action that returns the user to the sign-in screen.
-- [ ] Show a clear error for invalid credentials and cover keyboard-accessible form use.
+- [x] Add a sign-in screen using the fixed MVP credentials `user` / `password`.
+- [x] Keep the board hidden until sign-in succeeds.
+- [x] Add a sign-out action that returns the user to the sign-in screen.
+- [x] Show a clear error for invalid credentials and cover keyboard-accessible form use.
 
-**Tests and validation:** Add unit and browser tests for signed-out access, valid and invalid credentials, sign-out, and page refresh behavior.
+**Tests and validation:** Unit and browser tests cover signed-out access, valid and invalid credentials, keyboard submission, sign-out, and page refresh behavior.
 
-**Success criteria:** Only a successfully signed-in user can access the board in the MVP flow; sign-out returns to the sign-in screen. The tests establish the intended session behavior.
+**Success criteria:** Only a successfully signed-in user can access the board in the MVP flow; sign-out returns to the sign-in screen. The sign-in state survives page refresh in the current browser tab.
 
 ## Part 5: Database design and approval
 
