@@ -8,13 +8,13 @@
 - Run AI inference only with a free model installed locally in Ollama. A backend connection to Ollama over localhost is allowed; hosted AI providers, cloud AI APIs, and API keys are out of scope.
 - Keep the MVP sign-in credentials fixed to `user` / `password`; design stored data to support multiple users later.
 - Preserve the existing frontend demo and its color scheme while wiring in backend capabilities.
-- Start and stop scripts are required for macOS, Windows, and Linux.
+- Run the backend directly with `uv`; stop it from the terminal running the process.
 
 ## Part 1: Plan and approval
 
 - [x] Expand this document with implementation checklists, validation, and completion criteria for each project part.
 - [x] Add `frontend/AGENTS.md` describing the existing frontend and its development/test commands.
-- [ ] Review this plan and approve it before implementation begins.
+- [x] Review this plan and approve it before implementation begins.
 
 **Validation:** Confirm all parts have actionable tasks, tests, and success criteria; confirm the plan matches the local-only, no-Docker, Ollama requirements.
 
@@ -22,16 +22,16 @@
 
 ## Part 2: Local scaffolding
 
-- [ ] Inspect the available development environment and record prerequisites for Python/`uv`, Node.js/npm, and Ollama.
-- [ ] Create the FastAPI backend in `backend/` and manage its Python dependencies with `uv`.
-- [ ] Add a minimal backend route for a health/status check.
-- [ ] Add local start and stop scripts for macOS, Windows, and Linux under `scripts/`; do not use containers.
-- [ ] Serve a minimal local example page and expose the backend route so the initial end-to-end local setup can be verified.
-- [ ] Document the minimal commands needed to set up, start, and stop the application.
+- [x] Inspect the available development environment and record prerequisites for Python/`uv`, Node.js/npm, and Ollama.
+- [x] Create the FastAPI backend in `backend/` and manage its Python dependencies with `uv`.
+- [x] Add a minimal backend route for a health/status check.
+- [x] Document direct local server startup with `uv` and stopping with Ctrl+C; do not use containers or launcher scripts.
+- [x] Serve a minimal local example page and expose the backend route so the initial end-to-end local setup can be verified.
+- [x] Document the minimal commands needed to set up, start, and stop the application.
 
-**Tests and validation:** Run the backend unit tests; start the backend with the documented command; request the example page and health route locally; exercise the start/stop scripts on the available OS and review the other platform scripts for correct platform-specific behavior.
+**Tests and validation:** Run the backend unit tests; start the backend with the documented command; request the example page and health route locally; stop it with Ctrl+C.
 
-**Success criteria:** A developer can run the app locally without Docker, see the example page, receive a successful health response, and use the platform-appropriate scripts.
+**Success criteria:** A developer can run the app locally without Docker, see the example page, and receive a successful health response using the documented `uv` command.
 
 ## Part 3: Serve the existing frontend
 

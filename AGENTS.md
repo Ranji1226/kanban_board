@@ -25,7 +25,7 @@ For the MVP, the application will run directly on the local machine. Do not use 
 - Use Ollama to run free, locally hosted AI models. AI inference must stay on the local machine; do not use hosted AI providers, cloud AI APIs, or API keys. The backend may communicate with the local Ollama service over localhost.
 - Configure the Ollama model locally so users can select an installed model without changing application code
 - Use SQLLite local database for the database, creating a new db if it doesn't exist
-- Start and Stop server scripts for Mac, PC, Linux in scripts/
+- Run the backend directly with `uv`; stop it with Ctrl+C in the terminal running it
 
 ## Starting Point
 
